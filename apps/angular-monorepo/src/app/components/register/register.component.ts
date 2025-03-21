@@ -1,33 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register-form',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
 })
-export class RegisterComponent implements OnInit{
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
+export class RegisterComponent {
   title = 'Register';
-  @Input() registerForm: FormGroup = new FormGroup({});
+  @Input() inputRows = {};
 
-  /**
-   * TODO: FormGroup, FormControl, Validators
-   */
-}
-
-export interface RegisterForm {
-  username: string;
-  name: string;
-  lastname: string;
-  mobile: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  registerForm: FormGroup = new FormGroup({
+    id: new FormControl('0'),
+    name: new FormControl(''),
+    username: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl('')
+  });
+  onSubmit() {
+    this.inputRows = this.registerForm.value;
+    console.log(this.inputRows);
+  }
 }
